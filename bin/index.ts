@@ -10,7 +10,7 @@ const uri = 'https://web.stanford.edu/class/cs224n/syllabus.html';
 
 
 //const expr = '<a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a>';
-const expr = 'href';
+const expr = /href="(.*?)"/g;
 
 axios.get(uri).then( (resp) => {
   const reg = new RegExp(expr);
