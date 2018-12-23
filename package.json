@@ -18,6 +18,10 @@
   "author": "Shawn Cicoria <github@cicoria.com> (https://cicoria.com)",
   "license": "ISC",
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/node": "^10.12.18"
+  },
+  "dependencies": {
+    "axios": "^0.18.0"
   }
 }
