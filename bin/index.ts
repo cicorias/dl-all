@@ -1,3 +1,4 @@
+import fs from 'fs';
 import axios from 'axios';
 
 // pull down the HTML from the URI
@@ -15,9 +16,15 @@ const expr = /href="(.*?)"/g;
 axios.get(uri).then( (resp) => {
   const reg = new RegExp(expr);
   let m;
-  while (( m = reg.exec(resp.data as string)) !== null ){
-    var msg = 'Found ' + m[0] + '. '
-    console.log(msg);
+  let ic=0;
+  while (( m = reg.exec(resp.data)) !== null ){
+    var msg = m[0].slice(6, -1);
+    if (msg.endsWith('.pdf')){
+      axios.get(msg).then( (pdf) =>{
+        fs.writeFileSync('./out/' + ic++ + '.pdf', pdf.data, 'binary');
+      })
+    }
+    // console.log(msg);
   }
 
 
